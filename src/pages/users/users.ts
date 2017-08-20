@@ -18,4 +18,18 @@ export class UsersPage {
       easing: 'ease-out'
     });
   }
+
+  ionViewCanEnter(): boolean | Promise<boolean> {
+    console.log('ionViewCanEnter');
+    const rnd = Math.random();
+    return rnd > 0.8;
+  }
+
+  ionViewDidLoad() {
+    console.log("ionViewDidLoad");
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter");
+  }
 }
