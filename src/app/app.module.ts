@@ -3,15 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HomePage } from '../pages/home/home';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {FavouritesPage} from "../pages/favourites/favourites";
+import {LibraryPage} from "../pages/library/library";
+import {QuotePage} from "../pages/quote/quote";
+import {QuotesPage} from "../pages/quotes/quotes";
+import {SettingsPage} from "../pages/settings/settings";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    FavouritesPage,
+    LibraryPage,
+    QuotePage,
+    QuotesPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -20,7 +27,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    FavouritesPage,
+    LibraryPage,
+    QuotePage,
+    QuotesPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,
