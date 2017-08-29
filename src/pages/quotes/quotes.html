@@ -14,11 +14,15 @@
     </ion-card-header>
     <ion-card-content>
       <p>{{quote.text}}</p>
-      <p>{{quote.person}}</p>
+      <p class="author">{{quote.person}}</p>
     </ion-card-content>
     <ion-row>
       <ion-col text-right>
-        <button ion-button clear small (click)="onAddToFavourite(quote)">Favourite</button>
+        <button
+          ion-button
+          clear
+          small
+          (click)="onAddToFavourite(quote)">Favourite</button>
       </ion-col>
     </ion-row>
   </ion-card>
