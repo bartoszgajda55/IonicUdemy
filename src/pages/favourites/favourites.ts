@@ -27,6 +27,7 @@ export class FavouritesPage {
     modal.onDidDismiss((remove: boolean) => {
       if (remove)
         this.quotesService.removeQuoteFromFavourite(quote);
+      this.quotes = this.quotesService.getFavouriteQuotes();
     });
   }
 
