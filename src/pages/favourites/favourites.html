@@ -15,14 +15,17 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let quote of quotes">
-      <ion-item (click)="onViewQuote(quote)" color="quoteBackground">
+      <ion-item
+        (click)="onViewQuote(quote)"
+        [color]="getBackground()">
         <h2>{{quote.person}}</h2>
         <p>{{quote.text}}</p>
       </ion-item>
       <ion-item-options>
-        <button ion-button
-                color="danger"
-                (click)="onRemoveFromFavourites(quote)">
+        <button
+          ion-button
+          color="danger"
+          (click)="onRemoveFromFavourites(quote)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>
