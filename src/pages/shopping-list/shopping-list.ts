@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+import {NgForm} from "@angular/forms";
 
-/**
- * Generated class for the ShoppingListPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-shopping-list',
@@ -14,11 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ShoppingListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  onAddItem(form: NgForm) {
+    console.log(form);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ShoppingListPage');
-  }
-
 }
