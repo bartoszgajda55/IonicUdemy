@@ -23,6 +23,10 @@ export class EditRecipePage implements OnInit{
     console.log(this.recipeForm);
   }
 
+  onManageIngredients() {
+
+  }
+
   private initializeForm() {
     this.recipeForm = new FormGroup({
       'title': new FormControl(null, Validators.required),
