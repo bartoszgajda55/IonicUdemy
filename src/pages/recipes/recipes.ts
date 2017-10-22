@@ -21,7 +21,7 @@ export class RecipesPage {
     this.recipes = this.recipesService.getRecipes();
   }
 
-  onNewRecipe() {
+  public onNewRecipe(): void {
     this.navCtrl.push(EditRecipePage, {mode: 'New'});
   }
 
