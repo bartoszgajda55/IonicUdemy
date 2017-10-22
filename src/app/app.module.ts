@@ -2,28 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import {ErrorHandler, NgModule} from "@angular/core";
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import {FavouritesPage} from "../pages/favourites/favourites";
-import {LibraryPage} from "../pages/library/library";
-import {QuotePage} from "../pages/quote/quote";
-import {QuotesPage} from "../pages/quotes/quotes";
-import {SettingsPage} from "../pages/settings/settings";
+import {EditRecipePage} from "../pages/edit-recipe/edit-recipe";
+import {RecipePage} from "../pages/recipe/recipe";
+import {RecipesPage} from "../pages/recipes/recipes";
+import {ShoppingListPage} from "../pages/shopping-list/shopping-list";
 import {TabsPage} from "../pages/tabs/tabs";
-import {QuotesService} from "../services/quotes";
-import {SettingsService} from "../services/settings";
+import {ShoppingListService} from "../services/shopping-list";
+import {RecipesService} from "../services/recipes";
 
 
 @NgModule({
   declarations: [
     MyApp,
-    FavouritesPage,
-    LibraryPage,
-    QuotePage,
-    QuotesPage,
-    SettingsPage,
+    EditRecipePage,
+    RecipePage,
+    RecipesPage,
+    ShoppingListPage,
     TabsPage
   ],
   imports: [
@@ -33,19 +28,18 @@ import {SettingsService} from "../services/settings";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    FavouritesPage,
-    LibraryPage,
-    QuotePage,
-    QuotesPage,
-    SettingsPage,
+    EditRecipePage,
+    RecipePage,
+    RecipesPage,
+    ShoppingListPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    QuotesService,
-    SettingsService
+    ShoppingListService,
+    RecipesService
   ]
 })
 export class AppModule {}
