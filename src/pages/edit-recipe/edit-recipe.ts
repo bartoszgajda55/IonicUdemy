@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActionSheetController, AlertController, IonicPage, NavParams} from 'ionic-angular';
+import {ActionSheetController, AlertController, IonicPage, NavParams, ToastController} from 'ionic-angular';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @IonicPage()
@@ -15,7 +15,8 @@ export class EditRecipePage implements OnInit{
   constructor(
     public navParams: NavParams,
     private actionSheetController: ActionSheetController,
-    private alertController: AlertController) {}
+    private alertController: AlertController,
+    private toastCtrl: ToastController) {}
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
@@ -48,6 +49,7 @@ export class EditRecipePage implements OnInit{
               for (let i = len - 1; i >= 0; i--) {
                 fArray.removeAt(i);
               }
+              this.showToaster("Items deleted");
             }
           }
         },
@@ -78,10 +80,12 @@ export class EditRecipePage implements OnInit{
           text: 'Add',
           handler: data => {
             if (data.name.trim() == '' || data.name == null) {
-              return;
+              this.showToaster("Please enter valid data");
+              return null;
             }
             (<FormArray>this.recipeForm.get('ingredients'))
               .push(new FormControl(data.name, Validators.required));
+            this.showToaster("Item Added");
           }
         }
       ]
@@ -96,4 +100,13 @@ export class EditRecipePage implements OnInit{
       'ingredients': new FormArray([])
     });
   }
+
+  private showToaster(message: string): void {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
+}
 }
