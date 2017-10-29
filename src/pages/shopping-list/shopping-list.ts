@@ -43,8 +43,13 @@ export class ShoppingListPage {
 
       } else {
         this.authService.getActiveUser().getToken()
-          .then(data => {
-
+          .then(token => {
+            this.shoppingListService.storeList(token)
+              .subscribe(() => {
+                console.log('Success');
+              }, error2 => {
+                console.log(error2);
+              });
           });
       }
     });
