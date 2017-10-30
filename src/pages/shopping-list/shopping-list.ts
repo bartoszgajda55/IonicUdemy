@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, PopoverController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {ShoppingListService} from "../../services/shopping-list";
@@ -14,11 +14,10 @@ import {AuthService} from "../../services/auth";
 export class ShoppingListPage {
   listItems: Ingredient[];
 
-  constructor(
-    private shoppingListService: ShoppingListService,
-    private popoverCtrl: PopoverController,
-    private authService: AuthService
-  ) {}
+  constructor(private shoppingListService: ShoppingListService,
+              private popoverCtrl: PopoverController,
+              private authService: AuthService) {
+  }
 
   ionViewWillEnter() {
     this.loadItems();
@@ -40,7 +39,19 @@ export class ShoppingListPage {
     popover.present({ev: event});
     popover.onDidDismiss(data => {
       if (data.action === 'load') {
-
+        this.authService.getActiveUser().getToken()
+          .then(token => {
+            this.shoppingListService.fetchList(token)
+              .subscribe((list: Ingredient[]) => {
+                if (list) {
+                  this.listItems = list;
+                } else {
+                  this.listItems = [];
+                }
+              }, error2 => {
+                console.log(error2);
+              });
+          });
       } else {
         this.authService.getActiveUser().getToken()
           .then(token => {

@@ -11,7 +11,7 @@ export class ShoppingListService {
   private ingredients: Ingredient[] = [];
 
   constructor(
-    private htpp: Http,
+    private http: Http,
     private authService: AuthService
   ) {}
 
@@ -33,6 +33,14 @@ export class ShoppingListService {
 
   storeList(token: string): Observable<any> {
     const userId = this.authService.getActiveUser().uid;
-    return this.htpp.put('https://ionic-recipebook-7369b.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token, this.ingredients).map(value => value.json());
+    return this.http.put('https://ionic-recipebook-7369b.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token, this.ingredients)
+      .map(value => value.json());
+  }
+
+  fetchList(token: string): Observable<any> {
+    const userId = this.authService.getActiveUser().uid;
+    return this.http.get('https://ionic-recipebook-7369b.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token)
+      .map(value => value.json() as any)
+      .do(data => { this.ingredients = data });
   }
 }
