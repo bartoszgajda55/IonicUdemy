@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {MenuController, NavController, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 import {TabsPage} from "../pages/tabs/tabs";
 import {SigninPage} from "../pages/signin/signin";
 import {SignupPage} from "../pages/signup/signup";
@@ -12,6 +13,7 @@ import {AuthService} from "../services/auth";
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   tabsPage:any = TabsPage;
   signinPage = SigninPage;
   signupPage = SignupPage;
@@ -62,3 +64,4 @@ export class MyApp {
     this.menuCtrl.close();
   }
 }
+
