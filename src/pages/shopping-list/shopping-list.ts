@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, PopoverController} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, PopoverController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {ShoppingListService} from "../../services/shopping-list";
 import {Ingredient} from "../../models/ingredient";
@@ -16,8 +16,10 @@ export class ShoppingListPage {
 
   constructor(private shoppingListService: ShoppingListService,
               private popoverCtrl: PopoverController,
-              private authService: AuthService) {
-  }
+              private authService: AuthService,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController
+  ) { }
 
   ionViewWillEnter() {
     this.loadItems();
@@ -35,31 +37,37 @@ export class ShoppingListPage {
   }
 
   onShowOptions(event: MouseEvent): void {
+    const loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
     const popover = this.popoverCtrl.create(SlOptionsPage);
     popover.present({ev: event});
     popover.onDidDismiss(data => {
       if (data.action === 'load') {
+        loading.present();
         this.authService.getActiveUser().getToken()
           .then(token => {
             this.shoppingListService.fetchList(token)
               .subscribe((list: Ingredient[]) => {
+                loading.dismiss();
                 if (list) {
                   this.listItems = list;
                 } else {
                   this.listItems = [];
                 }
               }, error2 => {
-                console.log(error2);
+                this.handleError(error2.message);
               });
           });
-      } else {
+      } else if (data.action === 'store') {
+        loading.present();
         this.authService.getActiveUser().getToken()
           .then(token => {
             this.shoppingListService.storeList(token)
               .subscribe(() => {
-                console.log('Success');
+                loading.dismiss();
               }, error2 => {
-                console.log(error2);
+                this.handleError(error2.message);
               });
           });
       }
@@ -68,5 +76,14 @@ export class ShoppingListPage {
 
   private loadItems() {
     this.listItems = this.shoppingListService.getItems();
+  }
+
+  private handleError(error: string): void {
+    const alert = this.alertCtrl.create({
+      title: 'Error occurred!',
+      message: error,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
