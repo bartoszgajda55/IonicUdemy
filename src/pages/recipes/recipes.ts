@@ -44,6 +44,9 @@ export class RecipesPage {
     const popover = this.popoverCtrl.create(DatabaseOptionsPage);
     popover.present({ev: event});
     popover.onDidDismiss(data => {
+      if (!data) {
+        return;
+      }
       if (data.action === 'load') {
         loading.present();
         this.authService.getActiveUser().getToken()
