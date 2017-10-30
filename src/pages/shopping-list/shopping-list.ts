@@ -56,7 +56,7 @@ export class ShoppingListPage {
                   this.listItems = [];
                 }
               }, error2 => {
-                this.handleError(error2.message);
+                this.handleError(error2.json().error);
               });
           });
       } else if (data.action === 'store') {
@@ -67,7 +67,7 @@ export class ShoppingListPage {
               .subscribe(() => {
                 loading.dismiss();
               }, error2 => {
-                this.handleError(error2.message);
+                this.handleError(error2.json().error);
               });
           });
       }
