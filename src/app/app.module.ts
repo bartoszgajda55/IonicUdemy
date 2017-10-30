@@ -10,6 +10,8 @@ import {AddPlacePage} from "../pages/add-place/add-place";
 import {PlacePage} from "../pages/place/place";
 import {SetLocationPage} from "../pages/set-location/set-location";
 
+import { AgmCoreModule } from '@agm/core';
+
 const PAGES = [
   MyApp,
   HomePage,
@@ -22,7 +24,10 @@ const PAGES = [
   declarations: PAGES,
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAaNhy9oK-a7oMN3eiT0iBNZ5gs7dG6obI'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: PAGES,
