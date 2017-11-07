@@ -11,6 +11,7 @@ import {PlacePage} from "../pages/place/place";
 import {SetLocationPage} from "../pages/set-location/set-location";
 
 import { AgmCoreModule } from '@agm/core';
+import {Geolocation} from "@ionic-native/geolocation";
 
 const PAGES = [
   MyApp,
@@ -27,14 +28,15 @@ const PAGES = [
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAaNhy9oK-a7oMN3eiT0iBNZ5gs7dG6obI'
-    })
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: PAGES,
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation
   ]
 })
 export class AppModule {}
