@@ -12,6 +12,7 @@ import {SetLocationPage} from "../pages/set-location/set-location";
 
 import { AgmCoreModule } from '@agm/core';
 import {Geolocation} from "@ionic-native/geolocation";
+import {Camera} from "@ionic-native/camera";
 
 const PAGES = [
   MyApp,
@@ -36,7 +37,8 @@ const PAGES = [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Geolocation
+    Geolocation,
+    Camera
   ]
 })
 export class AppModule {}
