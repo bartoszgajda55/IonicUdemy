@@ -14,6 +14,7 @@ export class AddPlacePage {
     lat: 40.7624324,
     lng: -73.9759827
   };
+  locationIsSet: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -25,7 +26,16 @@ export class AddPlacePage {
   }
 
   onOpenMap() {
-    const modal = this.modalCtrl.create(SetLocationPage, {data: this.location});
+    const modal = this.modalCtrl.create(SetLocationPage, {
+      data: this.location,
+      isSet: this.locationIsSet
+    });
     modal.present();
+    modal.onDidDismiss((data) => {
+      if (data) {
+        this.location = data.location;
+        this.locationIsSet = true;
+      }
+    });
   }
 }

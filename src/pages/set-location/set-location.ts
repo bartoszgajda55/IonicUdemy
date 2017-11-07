@@ -15,6 +15,8 @@ export class SetLocationPage {
               public navParams: NavParams,
               private viewCtrl: ViewController) {
     this.location = this.navParams.get('data');
+    if (this.navParams.get("isSet"))
+      this.marker = this.location
   }
 
   onSetMarker(event: any): void {
