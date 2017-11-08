@@ -18,7 +18,7 @@ export class HomePage {
               private modalCtrl: ModalController) {
   }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.places = this.placesService.getPlaces();
   }
 

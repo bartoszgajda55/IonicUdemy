@@ -12,4 +12,10 @@ export class PlacesService {
   getPlaces(): Place[] {
     return this.places.slice();
   }
+
+  deletePlace(place: Place): void {
+    let index = this.places.indexOf(place);
+    if (index)
+      this.places.splice(index, 1);
+  }
 }
